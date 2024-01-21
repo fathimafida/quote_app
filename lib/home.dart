@@ -12,7 +12,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String newQuotes = "Pick your quotes";
+  String newQuotes = "";
   bool _isLoading = false;
   bool _isError = false;
 
@@ -39,8 +39,18 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
+  void initState() {
+    onRefresh();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Quotes"),
+        backgroundColor: const Color.fromARGB(255, 126, 219, 231),
+      ),
       body: _isLoading
           ? Center(child: CircularProgressIndicator())
           : Center(
